@@ -149,9 +149,6 @@ class OCRSystem(hub.Module):
 if __name__ == '__main__':
     ocr = OCRSystem()
     ocr._initialize()
-    image_path = [
-        './apps/data/road/benchmark/919.png',
-        './apps/data/road/benchmark/920.png',
-    ]
+    image_path = ['D:\\ocr\\road_extended\\benchmarks\\latest_bench\\919.png']
     res = ocr.predict(paths=image_path)
     print(res)
