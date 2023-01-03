@@ -44,12 +44,13 @@ logger = get_logger()
     author_email="sheltonsuen@gmail.com",
     type="cv/PP-OCR_system")
 class OCRSystem(hub.Module):
-    def _initialize(self, use_gpu=False, enable_mkldnn=False):
+    def __init__(self, use_gpu=False, enable_mkldnn=False):
         """
         initialize with the necessary elements
         """
         cfg = self.merge_configs()
 
+        # TODO: maybe in the online version, the use_gpu config will not work as expected
         cfg.use_gpu = use_gpu
         if use_gpu:
             try:
@@ -148,7 +149,6 @@ class OCRSystem(hub.Module):
 
 if __name__ == '__main__':
     ocr = OCRSystem()
-    ocr._initialize()
     image_path = ['D:\\ocr\\road_extended\\benchmarks\\latest_bench\\919.png']
     res = ocr.predict(paths=image_path)
     print(res)
