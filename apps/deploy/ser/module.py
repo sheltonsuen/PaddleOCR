@@ -26,6 +26,7 @@ from paddlehub.module.module import moduleinfo, serving
 import cv2
 import numpy as np
 import paddlehub as hub
+import paddle
 
 from tools.infer.utility import base64_to_cv2
 from tools.infer.predict_system import TextSystem
@@ -49,6 +50,9 @@ class SerSystem(hub.Module):
         init with the necessary elements
         """
         cfg = self.merge_configs()
+
+        if not paddle.is_compiled_with_cuda():
+            cfg.use_gpu = False
 
         self.text_sys = TextSystem(cfg)
 
